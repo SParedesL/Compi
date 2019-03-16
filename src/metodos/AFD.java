@@ -74,4 +74,8 @@ public class AFD implements Serializable{
         ois.close();
         return afd;
     }
+    
+    public void Prueba(){
+        
+    }
 }
