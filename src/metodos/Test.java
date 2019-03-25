@@ -154,7 +154,7 @@ public class Test {
         }
         
         System.out.println("*****************Token "+ i +" = " + token);*/
-        Sintactico s = new Sintactico(afdf, "(a|b|c|C)*");
+       /* Sintactico s = new Sintactico(afdf, "(a|b|c|C)*");
         Estado.restartState();
         AFN l = new AFN();
         System.out.println(s.E(l));
@@ -178,7 +178,10 @@ public class Test {
                 }
                 
             }
-        }
+        }*/
+        
+        Calculadora calcu = new Calculadora(afd, "1+2+3");
+        System.out.println("El resultado es:" + calcu.resultado);
     }
     
 }

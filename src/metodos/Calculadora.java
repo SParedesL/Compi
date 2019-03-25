@@ -6,7 +6,6 @@
 package metodos;
 
 
-
 /**
  *
  * @author jafet
@@ -23,6 +22,7 @@ public class Calculadora {
     
     
     public boolean E(){
+        System.out.println("Estoy entrando a E");
         if(T())
             if(Ep())
                 return true;
@@ -30,99 +30,88 @@ public class Calculadora {
     }
     
     public boolean Ep(){
+        System.out.println("Estoy entrando a Ep");
         int token;
         token = lexic.getToken();
+        System.out.println("Token EP: " + token);
         if(token == 10 || token == 20){
-            if(T())
+            if(T()){
+                if(token == 10){
+                    System.out.println(lexic.getLexema());
+                    resultado = resultado + Integer.parseInt(lexic.getLexema() + "");
+                    System.out.println("RESULTADO MÁS: "+resultado);
+                }
+                else{
+                    System.out.println(lexic.getLexema());
+                    resultado = resultado - Integer.parseInt(lexic.getLexema() + "");
+                    System.out.println("RESULTADO MENOS: "+resultado);
+                }
                 if(Ep()){
-                    if(token == 10)
-                        resultado = sumar(lexic.sigma);
-                    else
-                        resultado = restar(lexic.sigma);
                     return true;
-                }return false;
+                }
+                return false;
+            }
+                
         }
-        lexic.getToken();
+        lexic.regresarToken();
         return true;
     }
     
     public boolean T(){
+        System.out.println("Estoy entrando a T");
         if(F())
-            if(Tp()){
+            if(Tp())
                 return true;
-            }
         return false;
     }
     
     public boolean Tp(){
+        System.out.println("Estoy entrando a Tp");
         int token;
         token = lexic.getToken();
+        System.out.println("Token TP: " + token);
         if(token == 30 || token == 40){
-            if(F())
+            System.out.println(lexic.getLexema());
+            if(F()){
+                if(token == 30){
+                    resultado = resultado * Integer.parseInt(lexic.getLexema() + "");
+                    System.out.println("RESULTADO MULTI: "+resultado);
+                }
+                else{
+
+                    resultado = resultado / Integer.parseInt(lexic.getLexema() + "");
+                    System.out.println("RESULTADO DIV: "+resultado);
+                }
                 if(Tp()){
-                    if(token == 30)
-                        resultado = multiplicar(lexic.sigma);
-                    else
-                        resultado = dividir(lexic.sigma);
                     return true;
                 }
+            }
             return false;
         }
-        lexic.getToken();
+        lexic.regresarToken();
         return true;
     }
     
     public boolean F(){
+        System.out.println("Estoy entrando a F");
         int token;
         token = lexic.getToken();
+        System.out.println("Token F: " + token);
         switch(token){
             case 50:
+                System.out.println(lexic.getLexema());
                 if(E()){
                    token = lexic.getToken();
+                   System.out.println(lexic.getLexema());
                    if(token == 60)
                        return true;
                 }
                 return false;
             case 70:
+                System.out.println(lexic.getLexema());
                 return true;
         }
         return true;
-    }
-    
-    public int sumar(String cadena){
-        String partes[];
-        int izq, der;
-        partes = cadena.split("/+");
-        izq = Integer.parseInt(partes[0]);
-        der = Integer.parseInt(partes[1]);
-        return izq+der;
-    }
-    
-    public int restar(String cadena){
-        String partes[];
-        int izq, der;
-        partes = cadena.split("/-");
-        izq = Integer.parseInt(partes[0]);
-        der = Integer.parseInt(partes[1]);
-        return izq-der;
-    }
-    
-    public int multiplicar(String cadena){
-        String partes[];
-        int izq, der;
-        partes = cadena.split("/*");
-        izq = Integer.parseInt(partes[0]);
-        der = Integer.parseInt(partes[1]);
-        return izq*der;
-    }
-    
-    public int dividir(String cadena){
-        String partes[];
-        int izq, der;
-        partes = cadena.split("/");
-        izq = Integer.parseInt(partes[0]);
-        der = Integer.parseInt(partes[1]);
-        return izq/der;
     }
     
 }
