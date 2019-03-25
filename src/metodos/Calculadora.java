@@ -5,6 +5,8 @@
  */
 package metodos;
 
+import java.util.concurrent.atomic.AtomicInteger;
+
 
 /**
  *
@@ -12,41 +14,38 @@ package metodos;
  */
 public class Calculadora {
     Lexico lexic;
-    int resultado;
+    AtomicInteger resultado = new AtomicInteger();
+    StringBuffer postfijo = new StringBuffer();
     
     public Calculadora(AFD a, String sigma) {
-         resultado = 0; 
-         lexic = new Lexico(a, sigma);
-         E();
+        lexic = new Lexico(a, sigma);
+        E(resultado, postfijo);
     }
     
     
-    public boolean E(){
-        System.out.println("Estoy entrando a E");
-        if(T())
-            if(Ep())
+    public boolean E(AtomicInteger r, StringBuffer p){
+        if(T(r, p))
+            if(Ep(r, p))
                 return true;
         return false;
     }
     
-    public boolean Ep(){
-        System.out.println("Estoy entrando a Ep");
+    public boolean Ep(AtomicInteger r, StringBuffer p){
         int token;
+        AtomicInteger r1 = new AtomicInteger();
+        StringBuffer p1=new StringBuffer();
         token = lexic.getToken();
-        System.out.println("Token EP: " + token);
         if(token == 10 || token == 20){
-            if(T()){
+            if(T(r1, p1)){
                 if(token == 10){
-                    System.out.println(lexic.getLexema());
-                    resultado = resultado + Integer.parseInt(lexic.getLexema() + "");
-                    System.out.println("RESULTADO MÁS: "+resultado);
+                    r.set(r.get() + r1.get());
+                    p.append(p1.append("+"));
                 }
                 else{
-                    System.out.println(lexic.getLexema());
-                    resultado = resultado - Integer.parseInt(lexic.getLexema() + "");
-                    System.out.println("RESULTADO MENOS: "+resultado);
+                    r.set(r.get() - r1.get());
+                    p.append(p1.append("-"));
                 }
-                if(Ep()){
+                if(Ep(r, p1)){
                     return true;
                 }
                 return false;
@@ -57,32 +56,29 @@ public class Calculadora {
         return true;
     }
     
-    public boolean T(){
-        System.out.println("Estoy entrando a T");
-        if(F())
-            if(Tp())
+    public boolean T(AtomicInteger r, StringBuffer p){
+        if(F(r, p))
+            if(Tp(r, p))
                 return true;
         return false;
     }
     
-    public boolean Tp(){
-        System.out.println("Estoy entrando a Tp");
+    public boolean Tp(AtomicInteger r, StringBuffer p){
         int token;
+        AtomicInteger r1 = new AtomicInteger();
+        StringBuffer p1 = new StringBuffer();
         token = lexic.getToken();
-        System.out.println("Token TP: " + token);
         if(token == 30 || token == 40){
-            System.out.println(lexic.getLexema());
-            if(F()){
+            if(F(r1, p1)){
                 if(token == 30){
-                    resultado = resultado * Integer.parseInt(lexic.getLexema() + "");
-                    System.out.println("RESULTADO MULTI: "+resultado);
+                    r.set(r.get() * r1.get());
+                    p.append(p1.append("*"));
                 }
                 else{
-
-                    resultado = resultado / Integer.parseInt(lexic.getLexema() + "");
-                    System.out.println("RESULTADO DIV: "+resultado);
+                    r.set(r.get() / r1.get());
+                    p.append(p1.append("/"));
                 }
-                if(Tp()){
+                if(Tp(r, p1)){
                     return true;
                 }
             }
@@ -92,23 +88,20 @@ public class Calculadora {
         return true;
     }
     
-    public boolean F(){
-        System.out.println("Estoy entrando a F");
+    public boolean F(AtomicInteger r, StringBuffer p){
         int token;
         token = lexic.getToken();
-        System.out.println("Token F: " + token);
         switch(token){
             case 50:
-                System.out.println(lexic.getLexema());
-                if(E()){
+                if(E(r, p)){
                    token = lexic.getToken();
-                   System.out.println(lexic.getLexema());
                    if(token == 60)
                        return true;
                 }
                 return false;
             case 70:
-                System.out.println(lexic.getLexema());
+                r.set(Integer.parseInt(lexic.getLexema()+""));
+                p.append(lexic.getLexema());
                 return true;
         }
         return true;

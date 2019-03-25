@@ -10,6 +10,6 @@ package metodos;
  * @author sebas
  */
 public class Simbolo {
-    private char s;
+    private String s;
     private boolean terminal;
 }

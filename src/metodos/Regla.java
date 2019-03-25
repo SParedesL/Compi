@@ -5,10 +5,14 @@
  */
 package metodos;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author sebas
  */
 public class Regla {
+    ArrayList<Simbolos> simbolos;
+    
     
 }

@@ -180,8 +180,8 @@ public class Test {
             }
         }*/
         
-        Calculadora calcu = new Calculadora(afd, "1+2+3");
-        System.out.println("El resultado es:" + calcu.resultado);
+        Calculadora calcu = new Calculadora(afd, "1+1*2");
+        System.out.println("El resultado es:" + calcu.resultado + " Postfijo: " + calcu.postfijo);
     }
     
 }
