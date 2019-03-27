@@ -6,11 +6,13 @@
 package metodos;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 
 /**
  *
  * @author sebas
  */
-public class Regla {
-    ArrayList<Simbolo> simbolos;    
+public class Gramatica {
+    ArrayList<Regla> reglas;
+    HashSet<Simbolo> terminales, noTerminales;
 }
