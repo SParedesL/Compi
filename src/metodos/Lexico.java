@@ -13,6 +13,7 @@ import java.util.Stack;
  */
 public class Lexico {
     AFD a;
+    int token;
     Estado edo;
     String sigma;
     int iniLexema, finLexema;
@@ -29,7 +30,7 @@ public class Lexico {
     }
     
     public int getToken(){
-        int token=-1;
+        token=-1;
         //System.out.println("Inicio Lexema antes de buscar transicion = " + iniLexema);
         pila.push(iniLexema);
         if(finLexema==sigma.length())
@@ -63,7 +64,7 @@ public class Lexico {
         this.finLexema = this.iniLexema;
     }
     
-    public char getLexema(){
-        return sigma.charAt(pila.peek());
+    public String getLexema(){
+        return sigma.substring(pila.peek(), finLexema);
     }
 }

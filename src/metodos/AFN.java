@@ -20,8 +20,10 @@ public class AFN {
     Estado EdoIni;
     HashSet<Character> Alfabeto;
     HashSet<Estado> Estados;
+    ArrayList<String>ESTADOS;
     HashSet<Estado> EdosAcept;
     static final char EPSILON = 0x0;
+    char idAFN;
 
     public AFN() {
         EdoIni = null;
@@ -31,6 +33,7 @@ public class AFN {
         Estados.clear();
         EdosAcept = new HashSet<>();
         EdosAcept.clear();
+        ESTADOS =   new ArrayList<>();
     }
     
     public AFN(char s, int token){
@@ -38,6 +41,7 @@ public class AFN {
         Alfabeto = new HashSet<>();
         Estados = new HashSet<>();
         EdosAcept = new HashSet<>();
+        idAFN = s;
         
         EdoIni = new Estado();
         System.out.println("Estado inicial "+EdoIni.IdEdo);
@@ -50,6 +54,7 @@ public class AFN {
         Estados.add(EdoIni);
         Estados.add(EdoFin);
         EdosAcept.add(EdoFin);
+        ESTADOS =   new ArrayList<>();
     }
     
     public AFN AfnBasico(char s, int token){
@@ -135,6 +140,82 @@ public class AFN {
         this.Estados.addAll(f2.Estados);
         f2 = null;
         return this;
+    }
+    
+    public char getIdAFN() {
+        return idAFN;
+    }
+   
+    
+    public String getStringId() {
+        return Character.toString(idAFN);
+    }
+    
+    public String[][]  generarTablaAcomodada(){
+    
+        int numeroFilas             =   this.Estados.size();
+        int numeroColumnas          =   this.Alfabeto.size()+2;
+        String [][]datos            =   this.generarTabla();
+        String [][]datosAcomodados  =   new String[numeroFilas][numeroColumnas+1];
+        
+        for(int i = 0; i< numeroFilas; i++)
+            System.arraycopy(datos[i], 0, datosAcomodados[i], 1, numeroColumnas);
+        /*for(int j = 0; j < numeroColumnas; j ++)
+                datosAcomodados[i][j+1]   =   datos[i][j]*/
+        
+        for(int i = 0; i< numeroFilas; i++)
+                datosAcomodados[i][0]     =   this.ESTADOS.get(i);
+        
+        return datosAcomodados;
+    }
+
+    public String[][] generarTabla(){
+
+        int indice1                 =   0;
+        int numeroFilas             =   this.Estados.size();
+        int numeroColumnas          =   this.Alfabeto.size()+2;
+        String [][]datos            =   new String[numeroFilas][numeroColumnas]; 
+
+        for(int i=0; i< numeroFilas; i++)
+            for(int j =0; j<numeroColumnas; j++)
+                datos[i][j]         =   "-1";
+
+        for(Estado e : this.Estados){
+            
+            ESTADOS.add(e.IdEdo+"");
+            
+            int indice2            =   0;
+            for(char letra : this.Alfabeto){
+                for(Transicion t : e.Transiciones){
+                    if(t.Maxsimb == letra){
+                        if((datos[indice1][indice2]).equals("-1"))
+                            datos[indice1][indice2]   =   t.estado.IdEdo+"";
+                        else
+                            datos[indice1][indice2]   +=  "," + t.estado.IdEdo ;
+                    }else if(t.Maxsimb == 0x0 || t.Minsimb == 0x0){
+                        String car = Integer.toString(t.estado.IdEdo);
+                        if((datos[indice1][numeroColumnas-2]).contains(car)){
+                            if(!(datos[indice1][numeroColumnas-2]).equals("-1"))
+                                datos[indice1][numeroColumnas-2]   =   t.estado.IdEdo+"";} 
+                            else
+                                datos[indice1][numeroColumnas-2]    +=  "," +t.estado.IdEdo;
+                    }else
+                        datos[indice1][indice2]   =   -1+"";
+                }
+                indice2++;
+            }
+                
+            if(e.EdoAcep>-1)
+                    //Este imprime 1 si es edode aceptación
+                    datos[indice1][numeroColumnas-1]   =   1+"";
+                   // para imprimir token -> datos[indice1][numeroColumnas-1]   =   e.EdoAcep+"";
+            indice1 ++;         
+        }
+        return  datos;      
+    }
+    
+    public HashSet<Character> getAlfabeto(){
+         return this.Alfabeto;
     }
     
     public AFN Opcional(){
@@ -246,6 +327,7 @@ public class AFN {
     
     public AFD ConvertirAFD(){
         boolean IrAEmpty = false;
+        
         AFD afd = new AFD();
         Queue<HashSet<Estado>> c = new LinkedList();
         Estado inicial = new Estado(0);

@@ -88,7 +88,7 @@ public class Sintactico {
                 return false;
             case 80:
                 System.out.println("Basico de... " + lexic.getLexema());
-                f.AfnBasico(lexic.getLexema(), 80);
+                f.AfnBasico(lexic.getLexema().charAt(0), 80);
                 return true;
         }       
         return false;
