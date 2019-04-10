@@ -5,7 +5,7 @@
  */
 package Interfaces;
 
-import afn.AFN;
+import metodos.AFN;
 import javax.swing.JOptionPane;
 
 /**
