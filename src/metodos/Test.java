@@ -23,14 +23,14 @@ public class Test {
      * @param args the command line arguments
      */
     public static void main(String[] args) throws FileNotFoundException, IOException, ClassNotFoundException {
-        AFN mas = new AFN('+', 10);
+        /*AFN mas = new AFN('+', 10);
         AFN menos = new AFN('-', 20);
         AFN producto = new AFN('*', 30);
         AFN division = new AFN('/', 40);
         AFN par_izq = new AFN('(', 50);
         AFN par_der = new AFN(')', 60);
         AFN simb9 = new AFN();
-        simb9.AfnBasico('0', '9', 70);
+        simb9.AfnBasico('0', '9', 70);*/
         /*AFN or = new AFN('|', 10);
         AFN conc = new AFN('&', 20);
         AFN pos = new AFN('+', 30);
@@ -78,7 +78,7 @@ public class Test {
         simb1.UnirAFN(simb8);
         simb1.UnirAFN(simb9);
         */
-        HashSet<AFN> hs = new HashSet<>();
+        /*HashSet<AFN> hs = new HashSet<>();
         AFN c = new AFN();
         hs.clear();
         hs.add(mas);
@@ -87,7 +87,30 @@ public class Test {
         hs.add(division);
         hs.add(par_izq);
         hs.add(par_der);
-        hs.add(simb9);
+        hs.add(simb9);*/
+        
+        AFN simb = new AFN();
+        simb.AfnBasico('a', 'z', 100);
+        AFN simb1 = new AFN('\\', 100);
+        //simb1.AfnBasico('\\', 100);
+        simb.CerraduraPositiva();
+        //simb1.ConcatenarAFN(simb);
+        simb1.UnirAFN(simb);
+        AFN pc = new AFN(';', 200);
+        AFN or = new AFN('|', 300);
+        AFN flecha = new AFN('-', 400);
+        AFN cha = new AFN('>', 400);
+        flecha.ConcatenarAFN(cha);
+        
+        
+        HashSet<AFN> hs = new HashSet<>();
+        AFN c = new AFN();
+        hs.clear();
+        hs.add(simb1);
+        //hs.add(simb1);
+        hs.add(pc);
+        hs.add(or);
+        hs.add(flecha);
         
         c = AFN.UnirLexico(hs);
 
@@ -180,8 +203,8 @@ public class Test {
             }
         }*/
         
-        Calculadora calcu = new Calculadora(afd, "1+1*2");
-        System.out.println("El resultado es:" + calcu.resultado + " Postfijo: " + calcu.postfijo);
+        Gramatica g = new Gramatica();
+        g.generadorGramaticas(afd, "E->TE|TEp;T->FT;");
     }
     
 }

@@ -12,4 +12,27 @@ package metodos;
 public class Simbolo {
     private String s;
     private boolean terminal;
+    private int token;
+
+    public Simbolo(String s, boolean terminal, int token) {
+        this.s = s;
+        this.terminal = terminal;
+        this.token = token;
+    }
+    
+    
+
+    public String getS() {
+        return s;
+    }
+
+    public boolean isTerminal() {
+        return terminal;
+    }
+
+    public int getToken() {
+        return token;
+    }
+    
+    
 }
