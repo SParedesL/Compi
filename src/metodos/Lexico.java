@@ -18,7 +18,9 @@ public class Lexico {
     String sigma;
     int iniLexema, finLexema;
     Stack<Integer> pila = new Stack<>();
-    
+
+    public Lexico() {
+    }
 
     public Lexico(AFD a, String sigma) {
         this.a = a;
@@ -66,5 +68,19 @@ public class Lexico {
     
     public String getLexema(){
         return sigma.substring(pila.peek(), finLexema);
+    }
+    
+    public void GetEdo(Lexico l){
+        l.iniLexema = this.iniLexema;
+        l.finLexema = this.finLexema;
+        l.edo = this.edo;
+        l.a = this.a;
+    }
+    
+    public void SetEdo(Lexico l){
+        iniLexema = l.iniLexema;
+        finLexema = l.finLexema;
+        edo = l.edo;
+        a = l.a;
     }
 }
