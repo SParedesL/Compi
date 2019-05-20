@@ -1,9 +1,4 @@
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Interfaces;
 
 import metodos.AFN;
@@ -11,7 +6,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author Ana Luisa
+ * @author anals
  */
 public class NewAFN extends javax.swing.JFrame {
 
@@ -32,63 +27,82 @@ public class NewAFN extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        ButtonCrear = new javax.swing.JButton();
-        jTextFieldCadena = new javax.swing.JTextField();
-        jTextFieldToken = new javax.swing.JTextField();
-        jTextFieldCadena1 = new javax.swing.JTextField();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
+        jTextFieldCadena = new javax.swing.JTextField();
+        jTextFieldCadena1 = new javax.swing.JTextField();
+        jTextFieldToken = new javax.swing.JTextField();
+        ButtonCrear = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(204, 204, 255));
-        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jLabel1.setText("INGRESA LOS VALORES SOLICITADOS PARA CREAR TU AUTÓMATA");
 
-        jLabel2.setFont(new java.awt.Font("Gill Sans MT Condensed", 0, 20)); // NOI18N
-        jLabel2.setText("Ingresa los valores solicitados para crear tu autómata básic");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(29, 11, -1, -1));
+        jLabel2.setText("CADENAS DE DERIVACIÓN");
 
-        jLabel3.setFont(new java.awt.Font("Gill Sans MT Condensed", 0, 20)); // NOI18N
-        jLabel3.setText("Valor de token");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 50, -1, -1));
+        jLabel3.setText("Para una sola cadena utiliza solo el campo de la izquierda");
 
-        ButtonCrear.setFont(new java.awt.Font("Gill Sans MT Condensed", 0, 20)); // NOI18N
+        jLabel4.setText("Para un rango usa ambos campos");
+
+        jLabel5.setText("VALOR DE TOKEN");
+
         ButtonCrear.setText("CREAR");
         ButtonCrear.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ButtonCrearActionPerformed(evt);
             }
         });
-        jPanel1.add(ButtonCrear, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 190, -1, -1));
 
-        jTextFieldCadena.setBackground(new java.awt.Color(204, 204, 204));
-        jTextFieldCadena.setFont(new java.awt.Font("Gill Sans MT Condensed", 0, 24)); // NOI18N
-        jPanel1.add(jTextFieldCadena, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, 108, 29));
-
-        jTextFieldToken.setBackground(new java.awt.Color(204, 204, 204));
-        jTextFieldToken.setFont(new java.awt.Font("Gill Sans MT Condensed", 0, 24)); // NOI18N
-        jPanel1.add(jTextFieldToken, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 140, 140, 29));
-
-        jTextFieldCadena1.setBackground(new java.awt.Color(204, 204, 204));
-        jTextFieldCadena1.setFont(new java.awt.Font("Gill Sans MT Condensed", 0, 24)); // NOI18N
-        jPanel1.add(jTextFieldCadena1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 140, 98, 29));
-
-        jLabel6.setFont(new java.awt.Font("Gill Sans MT Condensed", 0, 20)); // NOI18N
-        jLabel6.setText("Cadena de derivacion");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, -1, -1));
-
-        jLabel1.setText("la final en el derecho Sí solo necesitas una cadena en blanco el campo derecho");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, 420, -1));
-
-        jLabel7.setText("Si ocupas un rango ingresa la cadena inicial en el campo izquierdo");
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, 330, -1));
-
-        jLabel5.setText("Ingresa un valor entero diferente para cada token");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 80, -1, -1));
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel4)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jTextFieldCadena, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(73, 73, 73)
+                                .addComponent(jTextFieldCadena1, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(103, 103, 103)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel5)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(ButtonCrear)
+                                .addComponent(jTextFieldToken, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(21, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel5))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel4)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextFieldCadena, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextFieldCadena1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextFieldToken, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(29, 29, 29)
+                .addComponent(ButtonCrear)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -98,7 +112,7 @@ public class NewAFN extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -127,9 +141,9 @@ public class NewAFN extends javax.swing.JFrame {
            AFN aux = new AFN();
            aux.AfnBasico(s1, s2, tok);
            Main2.automatas.add(aux);
-            Main2.modelo.addElement(cadena1);
-            JOptionPane.showMessageDialog(null, "¡Automata creado exitosamente! con rango de:"+s1+ "a" +s2+ "y un token de"+token);
-            dispose();
+           Main2.modelo.addElement(cadena1);
+           JOptionPane.showMessageDialog(null, "¡Automata creado exitosamente! con rango de:"+s1+ "a" +s2+ "y un token de"+token);
+           dispose();
         }
     }//GEN-LAST:event_ButtonCrearActionPerformed
 
@@ -138,10 +152,9 @@ public class NewAFN extends javax.swing.JFrame {
     private javax.swing.JButton ButtonCrear;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    public static javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField jTextFieldCadena;
     private javax.swing.JTextField jTextFieldCadena1;
