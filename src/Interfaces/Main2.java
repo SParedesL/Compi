@@ -2,11 +2,16 @@
 package Interfaces;
 
 import static Interfaces.Operaciones.jComboBoxAut1;
-import afn.AFD;
-import afn.AFN;
-import afn.Lexico;
+import metodos.AFD;
+import metodos.AFN;
+import metodos.Lexico;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.HashSet;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -54,6 +59,7 @@ public class Main2 extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         jList2 = new javax.swing.JList<>();
         jButtonGuardarAFD = new javax.swing.JButton();
+        jButtonCargarAFD1 = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         Crear = new javax.swing.JMenu();
         ItemNuevo = new javax.swing.JMenuItem();
@@ -68,6 +74,7 @@ public class Main2 extends javax.swing.JFrame {
         Analizar = new javax.swing.JMenu();
         ItemAnalizarCadena = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
+        jMenuItem3 = new javax.swing.JMenuItem();
 
         jMenu7.setText("jMenu7");
 
@@ -80,49 +87,49 @@ public class Main2 extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(204, 204, 255));
         jPanel1.setAlignmentX(2.0F);
         jPanel1.setPreferredSize(new java.awt.Dimension(600, 400));
-        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        jPanel3.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 3, 430, 410));
+        jPanel1.setLayout(null);
+        jPanel3.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 3, 530, 410));
 
         jPanel2.setBackground(new java.awt.Color(204, 204, 255));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Gill Sans MT Condensed", 0, 20)); // NOI18N
         jLabel1.setText("AFN DISPONIBLES:");
-        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 11, -1, -1));
+        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Gill Sans MT Condensed", 0, 20)); // NOI18N
         jLabel2.setText("AFD DISPONIBLES:");
-        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 210, -1, -1));
+        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 190, -1, -1));
 
         jButtonMostrarTabla.setBackground(new java.awt.Color(102, 102, 255));
         jButtonMostrarTabla.setFont(new java.awt.Font("Gill Sans MT Condensed", 0, 18)); // NOI18N
         jButtonMostrarTabla.setForeground(new java.awt.Color(255, 255, 255));
-        jButtonMostrarTabla.setText("MOSTRAR AFN SELECCIONADO");
+        jButtonMostrarTabla.setText("MOSTRAR AFN");
         jButtonMostrarTabla.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonMostrarTablaActionPerformed(evt);
             }
         });
-        jPanel2.add(jButtonMostrarTabla, new org.netbeans.lib.awtextra.AbsoluteConstraints(152, 159, -1, -1));
+        jPanel2.add(jButtonMostrarTabla, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 150, -1, -1));
 
         jButtonMostrarTablaAFD.setBackground(new java.awt.Color(102, 102, 255));
         jButtonMostrarTablaAFD.setFont(new java.awt.Font("Gill Sans MT Condensed", 0, 18)); // NOI18N
         jButtonMostrarTablaAFD.setForeground(new java.awt.Color(255, 255, 255));
-        jButtonMostrarTablaAFD.setText("MOSTRAR AFN SELECCIONADO");
+        jButtonMostrarTablaAFD.setText("MOSTRAR AFD");
         jButtonMostrarTablaAFD.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonMostrarTablaAFDActionPerformed(evt);
             }
         });
-        jPanel2.add(jButtonMostrarTablaAFD, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 360, -1, -1));
+        jPanel2.add(jButtonMostrarTablaAFD, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 370, -1, -1));
 
         jScrollPane1.setViewportView(jList1);
 
-        jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 42, 330, 100));
+        jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, 330, 100));
 
         jScrollPane2.setViewportView(jList2);
 
-        jPanel2.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 250, 330, 100));
+        jPanel2.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 220, 330, 100));
 
         jButtonGuardarAFD.setBackground(new java.awt.Color(102, 102, 255));
         jButtonGuardarAFD.setFont(new java.awt.Font("Gill Sans MT Condensed", 0, 18)); // NOI18N
@@ -133,9 +140,20 @@ public class Main2 extends javax.swing.JFrame {
                 jButtonGuardarAFDActionPerformed(evt);
             }
         });
-        jPanel2.add(jButtonGuardarAFD, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 360, -1, -1));
+        jPanel2.add(jButtonGuardarAFD, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 340, -1, -1));
 
-        jPanel3.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 0, 360, 410));
+        jButtonCargarAFD1.setBackground(new java.awt.Color(102, 102, 255));
+        jButtonCargarAFD1.setFont(new java.awt.Font("Gill Sans MT Condensed", 0, 18)); // NOI18N
+        jButtonCargarAFD1.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonCargarAFD1.setText("Cargar AFD");
+        jButtonCargarAFD1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCargarAFD1ActionPerformed(evt);
+            }
+        });
+        jPanel2.add(jButtonCargarAFD1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 400, -1, -1));
+
+        jPanel3.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 0, 370, 450));
 
         jMenuBar1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 51, 255), 1, true));
         jMenuBar1.setToolTipText("");
@@ -243,6 +261,14 @@ public class Main2 extends javax.swing.JFrame {
         });
         Analizar.add(jMenuItem2);
 
+        jMenuItem3.setText("OPERACIÓN CON CALCULADORA");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
+        Analizar.add(jMenuItem3);
+
         jMenuBar1.add(Analizar);
 
         setJMenuBar(jMenuBar1);
@@ -251,11 +277,11 @@ public class Main2 extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 812, Short.MAX_VALUE)
+            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 967, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 421, Short.MAX_VALUE)
+            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -360,7 +386,7 @@ public class Main2 extends javax.swing.JFrame {
 
         JTable tabla          =   new JTable(datos,titulos);
         scrollTabla           = new JScrollPane(tabla);
-        scrollTabla.setBounds(50,20,500,250);
+        scrollTabla.setBounds(50,20,450,150);
         this.jPanel1.add(scrollTabla);
         this.jPanel1.repaint();
 
@@ -390,14 +416,17 @@ public class Main2 extends javax.swing.JFrame {
         titulos[index]        =   "E";
         titulos[index+1]      =   "Aceptacion";
 
-        if(this.scrollTabla   != null)
-        this.jPanel1.remove(this.scrollTabla);
+        if(this.scrollTabla   != null){
+            this.jPanel1.remove(this.scrollTabla);
+        }
 
         JTable tabla          =   new JTable(datos,titulos);
         scrollTabla           = new JScrollPane(tabla);
-        scrollTabla.setBounds(50,20,500,250);
+        scrollTabla.setBounds(50,20,450,150);
         this.jPanel1.add(scrollTabla);
+        
         this.jPanel1.repaint();
+
 
     }//GEN-LAST:event_jButtonMostrarTablaActionPerformed
 
@@ -412,8 +441,10 @@ public class Main2 extends javax.swing.JFrame {
             }    
             AFN c = AFN.UnirLexico(hs);
             automatas.add(c);
-            
             modelo.addElement(name);
+            System.out.println("SU getStringId es: ->>> ");
+            c.setIdAFN(name);
+            System.out.println(c.getStringId());
             JOptionPane.showMessageDialog(this, "¡Automata creado exitosamente! con nombre:"+name);
         }else{
             JOptionPane.showMessageDialog(this, "Selecciona en la lista de << AFN disponibles >> los AFNs para unir. \n "
@@ -426,15 +457,64 @@ public class Main2 extends javax.swing.JFrame {
         if(positionSelected>=0){
             AFD afd = automatasAFD.get(positionSelected);
             try { 
-                
-                afd.guardarAFD("/");
+                ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("AutGuardado.afd"));
+                oos.writeObject(afd);
+                oos.flush();
+                oos.close();
+                JOptionPane.showMessageDialog(this, "Autómada guardado correctamente");
             } catch (IOException ex) {
+                JOptionPane.showMessageDialog(this, "El automáta no se pudo guardar de forma correcta");
                 Logger.getLogger(Main2.class.getName()).log(Level.SEVERE, null, ex);
             }
         }else{
             JOptionPane.showMessageDialog(this, "Selecciona en la lista de << AFD disponibles >> el AFN a guardar. ");
         }
     }//GEN-LAST:event_jButtonGuardarAFDActionPerformed
+
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+        Operaciones op = new Operaciones();
+        op.setVisible(true);
+        op.setLocationRelativeTo(null);
+        op.jComboBoxAut2.setVisible(false);
+        op.jLabel3.setVisible(false);
+        op.jComboBoxAut1.removeAllItems();
+        for(AFD afd : automatasAFD){
+            op.jComboBoxAut1.addItem("AFD "+afd.getStringId());   
+        }
+        operacion = 8;
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
+
+    private void jButtonCargarAFD1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCargarAFD1ActionPerformed
+        Operaciones op = new Operaciones();
+        operacion = 9;
+        String nomArchivo = JOptionPane.showInputDialog(this, "Ingresa el nombre del archivo");
+        ObjectInputStream ois = null;
+        AFD afdf = new AFD();
+        try {
+            ois = new ObjectInputStream(new FileInputStream(nomArchivo));
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(Main2.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(Main2.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+            afdf = (AFD)ois.readObject();
+        } catch (IOException ex) {
+            Logger.getLogger(Main2.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Main2.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+            ois.close();
+        } catch (IOException ex) {
+            Logger.getLogger(Main2.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        int name = automatas.size()+1;
+        String nameS = String.valueOf(name);
+        automatasAFD.add(afdf);
+        modelo2.addElement("AFD "+nameS);
+        afdf.setStringId(String.valueOf(nameS));
+    }//GEN-LAST:event_jButtonCargarAFD1ActionPerformed
 
     public static void main(String args[]) {
         Main2   GUI     =   new Main2();
@@ -454,6 +534,7 @@ public class Main2 extends javax.swing.JFrame {
     private javax.swing.JMenuItem ItemPositiva;
     private javax.swing.JMenuItem ItemUnir;
     private javax.swing.JMenu Operaciones;
+    private javax.swing.JButton jButtonCargarAFD1;
     private javax.swing.JButton jButtonGuardarAFD;
     private javax.swing.JButton jButtonMostrarTabla;
     private javax.swing.JButton jButtonMostrarTablaAFD;
@@ -465,6 +546,7 @@ public class Main2 extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;

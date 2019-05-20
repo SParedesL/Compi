@@ -1,9 +1,9 @@
 
 package Interfaces;
 
-import afn.AFD;
-import afn.AFN;
-import afn.Lexico;
+import metodos.AFD;
+import metodos.AFN;
+import metodos.Lexico;
 import java.util.HashSet;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;

@@ -14,8 +14,8 @@ import java.util.concurrent.atomic.AtomicInteger;
  */
 public class Calculadora {
     Lexico lexic;
-    AtomicInteger resultado = new AtomicInteger();
-    StringBuffer postfijo = new StringBuffer();
+    public AtomicInteger resultado = new AtomicInteger();
+    public StringBuffer postfijo = new StringBuffer();
     
     public Calculadora(AFD a, String sigma) {
         lexic = new Lexico(a, sigma);

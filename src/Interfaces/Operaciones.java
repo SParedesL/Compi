@@ -5,10 +5,11 @@
  */
 package Interfaces;
 
-import afn.AFD;
-import afn.AFN;
-import afn.Lexico;
+import metodos.AFD;
+import metodos.AFN;
+import metodos.Lexico;
 import javax.swing.JOptionPane;
+import metodos.Calculadora;
 
 /**
  *
@@ -139,58 +140,70 @@ public class Operaciones extends javax.swing.JFrame {
     }//GEN-LAST:event_jComboBoxAut2ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-            indicesO[0] = jComboBoxAut1.getSelectedIndex();
-            indicesO[1] = jComboBoxAut2.getSelectedIndex();
-
-            AFN AutA = Main2.automatas.get(indicesO[0]);
-            AFN AutB = Main2.automatas.get(indicesO[1]);
             int operacion = Main2.operacion;
-            
-            switch(operacion){
                 
-                case 1:
-                    AutA.UnirAFN(AutB);
-                    break;
-                case 2:
-                    AutA.ConcatenarAFN(AutB);
-                    break;
-                case 3:
-                    AutA.CerraduraPositiva();
-                    break;
-                case 4:
-                    AutA.CerraduraEstrella();
-                    break;
-                case 5:
-                    AutA.Opcional();
-                    break;
-                case 6:
-                    int name = indicesO[0] + 1;
-                    AFD afd = new AFD();
-                    afd = AutA.ConvertirAFD();
-                    Main2.automatasAFD.add(afd);
-                    Main2.modelo2.addElement("AFD "+name);
-                    afd.setStringId(String.valueOf(name));
-                    break;
-                case 7:
-                    AFD AutAFD = Main2.automatasAFD.get(indicesO[0]);
-                    String cadena = JOptionPane.showInputDialog(null, "Introduce la cadena a analizar");
-                    Lexico lexic = new Lexico(AutAFD, cadena);
-                    int i = 1;
-                    int token;
-                    while((token=lexic.getToken())!=0){
-                        System.out.println("*****************Token "+ i +" = " + token);
-                        System.out.println("Lexema: " + lexic.getLexema());
-                        i++;
-                        JOptionPane.showMessageDialog(null, "TOKEN"+ i +" = " + token+"\n"+"Lexema: " + lexic.getLexema() );
-                    }
-                    break;
-                default:
-                    System.out.println("error");
-                    break;    
-            }
-            
-            dispose();
+                indicesO[0] = jComboBoxAut1.getSelectedIndex();
+                indicesO[1] = jComboBoxAut2.getSelectedIndex();
+
+
+                AFN AutA = Main2.automatas.get(indicesO[0]);
+                AFN AutB = Main2.automatas.get(indicesO[1]);
+
+
+                switch(operacion){      
+                    case 1:
+                        AutA.UnirAFN(AutB);
+                        break;
+                    case 2:
+                        AutA.ConcatenarAFN(AutB);
+                        break;
+                    case 3:
+                        AutA.CerraduraPositiva();
+                        break;
+                    case 4:
+                        AutA.CerraduraEstrella();
+                        break;
+                    case 5:
+                        AutA.Opcional();
+                        break;
+                    case 6:
+                        int name = indicesO[0] + 1;
+                        AFD afd = new AFD();
+                        afd = AutA.ConvertirAFD();
+                        Main2.automatasAFD.add(afd);
+                        Main2.modelo2.addElement("AFD "+name);
+                        afd.setStringId(String.valueOf(name));
+                        break;
+                    case 7:
+                        AFD AutAFD = Main2.automatasAFD.get(indicesO[0]);
+                        String cadena = JOptionPane.showInputDialog(null, "Introduce la cadena a analizar");
+                        Lexico lexic = new Lexico(AutAFD, cadena);
+                        int i = 1;
+                        int token;
+                        while((token=lexic.getToken())!=0){
+                            System.out.println("*****************Token "+ i +" = " + token);
+                            System.out.println("Lexema: " + lexic.getLexema());
+                            i++;
+                            JOptionPane.showMessageDialog(null, "TOKEN"+ i +" = " + token+"\n"+"Lexema: " + lexic.getLexema() );
+                        }
+                        break;
+                    case 8:
+                        AFD AFDAx = Main2.automatasAFD.get(indicesO[0]);
+                        String op = JOptionPane.showInputDialog(null, "Introduce la operación a realizar");
+                        System.out.println("La operación que leo es: "+op);
+                        //Ejemplo operación 1+1*2
+                        Calculadora calcu = new Calculadora(AFDAx,op);
+                        System.out.println("El resultado es:" + calcu.resultado + " Postfijo: " + calcu.postfijo);
+                        JOptionPane.showMessageDialog(null, "RESULTADO"+ calcu.resultado +"\n"+"POSFIJO: " + calcu.postfijo );
+                        break;
+                    default:
+                        System.out.println("error");
+                        break;   
+
+                }
+            dispose();  
             JOptionPane.showMessageDialog(null, "¡La operación se ha concluido con exito!");
+        
     }//GEN-LAST:event_jButton2ActionPerformed
     
     
