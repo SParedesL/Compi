@@ -108,6 +108,7 @@ public class Main2 extends javax.swing.JFrame {
         jScrollPane2.setViewportView(jList2);
 
         jButtonMostrarTabla.setText("MOSTRAR AFN");
+
         jButtonMostrarTabla.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonMostrarTablaActionPerformed(evt);
@@ -115,6 +116,7 @@ public class Main2 extends javax.swing.JFrame {
         });
 
         jButtonMostrarTablaAFD.setText("MOSTRAR AFD");
+      
         jButtonMostrarTablaAFD.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonMostrarTablaAFDActionPerformed(evt);
@@ -186,6 +188,7 @@ public class Main2 extends javax.swing.JFrame {
                         .addComponent(jButtonCargarAFD1)
                         .addContainerGap())))
         );
+
 
         jPanel3.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 0, 380, 430));
 

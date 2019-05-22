@@ -5,10 +5,134 @@
  */
 package metodos;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+
 /**
  *
  * @author jafet
  */
 public class LL1 {
+     public static ArrayList<Regla> reglas;
+     static final String EPSILON = "\u03B5";
+     public Gramatica G;
+
+    public LL1() {
+    }
+     
+     public static void main(String[] args) {
+        Regla r = new Regla();
+        LL1 l = new LL1();
+        ArrayList<Simbolo> aux = new ArrayList<>();
+        HashSet<Simbolo> aux2 = new HashSet<>();
+        r.ReglasPrueba();
+        reglas = r.reglas;
+        aux = reglas.get(1).getRegla();
+         System.out.println("\n Regla que vamos a analizar: ");
+         for (Simbolo simbolo : aux) 
+             System.out.print(simbolo.getS()+" ");
+         
+         System.out.println("First de "+aux.get(0).getS()+": \n");
+         aux2 = l.First(aux);
+         System.out.print("{");
+         for (Simbolo simbolo : aux2) {
+             if(simbolo.getS().equals(EPSILON))
+                 System.out.println("Epsilon");
+             else
+                 System.out.print(simbolo.getS()+" ");
+         }
+         System.out.print("}"+"\n");
+         
+         System.out.println("Follow de "+aux.get(0).getS()+": \n");
+         HashSet<Simbolo> aux3 = new HashSet<>();
+         aux3 = l.Follow(aux.get(0));
+         System.out.print("{");
+         for (Simbolo simbolo : aux3) 
+           System.out.print(simbolo.getS()+" ");
+         System.out.print("}"+"\n");
+        
+    }
+     
+     public HashSet<Simbolo> First(ArrayList<Simbolo> simbolos){
+        HashSet<Simbolo> c = new HashSet<>();
+        
+        if(simbolos.get(1).isTerminal() || simbolos.get(1).getS().equals(EPSILON)){ 
+            c.add(simbolos.get(1));
+            return c;
+        }
+
+        for (Regla r : buscarSimbolo(simbolos.get(1), true)){ 
+            //System.out.println("\n --Regla del Simbolo--");
+            c.addAll(First(r.getRegla()));
+        }
+        
+        if(c.contains(EPSILON) && simbolos.size() != 1){
+            c.remove(EPSILON); //eliminamos el epsilon
+            c.addAll(First(simbolos)); //unimos los simbolos que ya teniamos en c, con el first del nuevo.        
+        }
+        return c;
+     }
+     
+     public HashSet<Simbolo> Follow(Simbolo simbNT){
+         HashSet<Simbolo> c = new HashSet<>();
+         Simbolo pesos = new Simbolo("$", false, 200);
+         ArrayList<Regla> aux = buscarSimbolo(simbNT, false);
+         System.out.println(aux.size());
+         
+         System.out.println(reglas.get(0).getRegla().get(0).getS()+" Es igual a "+ simbNT.getS());
+         if(reglas.get(0).getRegla().get(0).getS().equals(simbNT.getS()))
+             c.add(pesos);
+         
+         System.out.print("\n Conjunto c: " );
+         for (Simbolo simbolo : c) 
+             System.out.print(simbolo.getS()+" ");
+         
+         for (Regla regla : aux) {
+            ArrayList<Simbolo> ladoDer = regla.getRegla();
+            int tam = ladoDer.size();
+            if(tam == 4){
+                for (Regla reg : buscarSimbolo(ladoDer.get(3), true)) 
+                    c.addAll(First(reg.getRegla()));
+                
+                System.out.print("\n Conjunto c: " );
+                for (Simbolo simbolo : c) 
+                    System.out.print(simbolo.getS()+" ");
+         
+                if(c.contains(EPSILON)){
+                    c.remove(EPSILON);
+                    c.addAll(Follow(ladoDer.get(0)));
+                }
+            }else if(tam == 3)
+                Follow(ladoDer.get(0));
+                System.out.print("Conjunto c: " );
+                for (Simbolo simbolo : c) 
+                    System.out.print(simbolo.getS()+" ");
+         }
+         
+         return c;
+     }
+    
+    public ArrayList<Regla> buscarSimbolo(Simbolo sim, boolean izq){
+        ArrayList<Regla> aux = new ArrayList<>();
+        for (Regla reg : reglas) {
+            if(reg.getRegla().get(0).getS().equals(sim.getS()) && izq)
+                aux.add(reg);
+            else if(!izq){
+                for (int i = 1; i < reg.getRegla().size(); i++) {
+                    if(reg.getRegla().get(i).getS().equals(sim.getS()))
+                        aux.add(reg);
+                }
+            }
+                
+        }
+        return aux;
+    }
+     
+     
+     
+     
+     
+     
+     
      
 }

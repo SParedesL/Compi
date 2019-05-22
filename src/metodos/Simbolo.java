@@ -5,6 +5,8 @@
  */
 package metodos;
 
+import java.util.Objects;
+
 /**
  *
  * @author sebas
@@ -12,6 +14,7 @@ package metodos;
 public class Simbolo {
     private String s;
     private boolean terminal;
+    static final String EPSILON = "\u03B5";
     private int token;
 
     public Simbolo(String s, boolean terminal, int token) {
@@ -20,8 +23,6 @@ public class Simbolo {
         this.token = token;
     }
     
-    
-
     public String getS() {
         return s;
     }
@@ -29,10 +30,11 @@ public class Simbolo {
     public boolean isTerminal() {
         return terminal;
     }
+    
 
     public int getToken() {
         return token;
     }
-    
+
     
 }
