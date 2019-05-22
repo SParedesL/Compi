@@ -78,7 +78,7 @@ public class Main2 extends javax.swing.JFrame {
         jPanel1.setAlignmentX(2.0F);
         jPanel1.setPreferredSize(new java.awt.Dimension(600, 400));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        jPanel3.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 3, 570, 410));
+        jPanel3.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 3, 430, 410));
 
         jPanel2.setBackground(new java.awt.Color(204, 204, 255));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -94,28 +94,28 @@ public class Main2 extends javax.swing.JFrame {
         jButtonMostrarTabla.setBackground(new java.awt.Color(102, 102, 255));
         jButtonMostrarTabla.setFont(new java.awt.Font("Gill Sans MT Condensed", 0, 18)); // NOI18N
         jButtonMostrarTabla.setForeground(new java.awt.Color(255, 255, 255));
-        jButtonMostrarTabla.setText("MOSTRAR AFN ");
+        jButtonMostrarTabla.setText("MOSTRAR AFN SELECCIONADO");
         jButtonMostrarTabla.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonMostrarTablaActionPerformed(evt);
             }
         });
-        jPanel2.add(jButtonMostrarTabla, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 160, -1, -1));
+        jPanel2.add(jButtonMostrarTabla, new org.netbeans.lib.awtextra.AbsoluteConstraints(152, 159, -1, -1));
 
         jButtonMostrarTablaAFD.setBackground(new java.awt.Color(102, 102, 255));
         jButtonMostrarTablaAFD.setFont(new java.awt.Font("Gill Sans MT Condensed", 0, 18)); // NOI18N
         jButtonMostrarTablaAFD.setForeground(new java.awt.Color(255, 255, 255));
-        jButtonMostrarTablaAFD.setText("MOSTRAR AFD");
+        jButtonMostrarTablaAFD.setText("MOSTRAR AFN SELECCIONADO");
         jButtonMostrarTablaAFD.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonMostrarTablaAFDActionPerformed(evt);
             }
         });
-        jPanel2.add(jButtonMostrarTablaAFD, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 360, 200, -1));
+        jPanel2.add(jButtonMostrarTablaAFD, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 360, -1, -1));
 
         jScrollPane1.setViewportView(jList1);
 
-        jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 330, 100));
+        jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 42, 330, 100));
 
         jScrollPane2.setViewportView(jList2);
 
@@ -130,9 +130,9 @@ public class Main2 extends javax.swing.JFrame {
                 jButtonGuardarAFDActionPerformed(evt);
             }
         });
-        jPanel2.add(jButtonGuardarAFD, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 360, -1, -1));
+        jPanel2.add(jButtonGuardarAFD, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 360, -1, -1));
 
-        jPanel3.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 0, 410, 410));
+        jPanel3.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 0, 360, 410));
 
         jMenuBar1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 51, 255), 1, true));
         jMenuBar1.setToolTipText("");
@@ -248,7 +248,7 @@ public class Main2 extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 1008, Short.MAX_VALUE)
+            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 812, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
