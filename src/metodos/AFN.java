@@ -67,6 +67,7 @@ public class AFN {
         Estados.add(EdoIni);
         Estados.add(EdoFin);
         EdosAcept.add(EdoFin);
+        idAFN = s;
         return this;
     }
     
@@ -82,6 +83,7 @@ public class AFN {
         Estados.add(EdoIni);
         Estados.add(EdoFin);
         EdosAcept.add(EdoFin);
+        idAFN = s;
         return this;
     }
     
@@ -125,6 +127,8 @@ public class AFN {
         return r;
     }
     
+    
+    
     public AFN ConcatenarAFN(AFN f2){
         for (Estado e : this.EdosAcept) {
             for (Transicion t : f2.EdoIni.Transiciones)
@@ -150,6 +154,13 @@ public class AFN {
     public String getStringId() {
         return Character.toString(idAFN);
     }
+
+    public void setIdAFN(String name) {
+        char newName=name.charAt(0);
+        this.idAFN = newName;
+    }
+    
+    
     
     public String[][]  generarTablaAcomodada(){
     

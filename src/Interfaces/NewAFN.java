@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package Interfaces;
 
 import metodos.AFN;
@@ -10,7 +6,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author Ana Luisa
+ * @author anals
  */
 public class NewAFN extends javax.swing.JFrame {
 
@@ -31,27 +27,28 @@ public class NewAFN extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        ButtonCrear = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
         jTextFieldCadena = new javax.swing.JTextField();
+        jTextFieldCadena1 = new javax.swing.JTextField();
         jTextFieldToken = new javax.swing.JTextField();
+        ButtonCrear = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(204, 204, 255));
+        jLabel1.setText("INGRESA LOS VALORES SOLICITADOS PARA CREAR TU AUTÓMATA");
 
-        jLabel2.setFont(new java.awt.Font("Gill Sans MT Condensed", 0, 20)); // NOI18N
-        jLabel2.setText("Ingresa los valores solicitados para crear tu autómata básic");
+        jLabel2.setText("CADENAS DE DERIVACIÓN");
 
-        jLabel3.setFont(new java.awt.Font("Gill Sans MT Condensed", 0, 20)); // NOI18N
-        jLabel3.setText("Valor de token");
+        jLabel3.setText("Para una sola cadena utiliza solo el campo de la izquierda");
 
-        jLabel4.setFont(new java.awt.Font("Gill Sans MT Condensed", 0, 20)); // NOI18N
-        jLabel4.setText("Cadena de derivacion");
+        jLabel4.setText("Para un rango usa ambos campos");
 
-        ButtonCrear.setFont(new java.awt.Font("Gill Sans MT Condensed", 0, 20)); // NOI18N
+        jLabel5.setText("VALOR DE TOKEN");
+
         ButtonCrear.setText("CREAR");
         ButtonCrear.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -59,62 +56,52 @@ public class NewAFN extends javax.swing.JFrame {
             }
         });
 
-        jTextFieldCadena.setBackground(new java.awt.Color(204, 204, 204));
-        jTextFieldCadena.setFont(new java.awt.Font("Gill Sans MT Condensed", 0, 24)); // NOI18N
-
-        jTextFieldToken.setBackground(new java.awt.Color(204, 204, 204));
-        jTextFieldToken.setFont(new java.awt.Font("Gill Sans MT Condensed", 0, 24)); // NOI18N
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel4)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(29, 29, 29)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addGap(0, 33, Short.MAX_VALUE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(5, 5, 5)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabel4)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jLabel3)
-                                        .addGap(57, 57, 57))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jTextFieldCadena, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jTextFieldToken, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(17, 17, 17))))))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(ButtonCrear)))
-                .addGap(18, 18, 18))
+                                .addComponent(jTextFieldCadena, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(73, 73, 73)
+                                .addComponent(jTextFieldCadena1, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(103, 103, 103)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel5)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(ButtonCrear)
+                                .addComponent(jTextFieldToken, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel2)
+                .addComponent(jLabel1)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel4))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextFieldCadena, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jTextFieldToken, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel5))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel4)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextFieldCadena, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextFieldCadena1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextFieldToken, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(29, 29, 29)
                 .addComponent(ButtonCrear)
-                .addGap(21, 21, 21))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -132,25 +119,45 @@ public class NewAFN extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void ButtonCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonCrearActionPerformed
-        String cadena = jTextFieldCadena.getText();
-        String token = jTextFieldToken.getText();
-        int tok = Integer.parseInt(token);
-        char ch = cadena.charAt(0);
-        AFN nuevoAut = new AFN(ch,tok);
-        Main2.automatas.add(nuevoAut);
-        Main2.modelo.addElement(cadena);
-        JOptionPane.showMessageDialog(null, "¡Automata creado exitosamente! con nombre:"+cadena+"y número de token: "+token);
-        dispose();
+        if(jTextFieldCadena1.getText().isEmpty()){
+            String cadena1 = jTextFieldCadena.getText();
+            String token = jTextFieldToken.getText();
+            int tok = Integer.parseInt(token);
+            char ch = cadena1.charAt(0);
+            AFN nuevoAut = new AFN(ch,tok);
+            Main2.automatas.add(nuevoAut);
+            Main2.modelo.addElement(cadena1);
+            JOptionPane.showMessageDialog(null, "¡Automata creado exitosamente! con nombre:"+cadena1+"y número de token: "+token);
+            dispose();
+        }
+        else{
+           String cadena1 = jTextFieldCadena.getText();
+           String cadena2 = jTextFieldCadena1.getText();
+           char s1 = cadena1.charAt(0); //Solo primer caracter
+           char s2 = cadena2.charAt(0); //Solo primer caracter
+           String token = jTextFieldToken.getText();
+           int tok = Integer.parseInt(token);
+           char ch = cadena1.charAt(0);  
+           AFN aux = new AFN();
+           aux.AfnBasico(s1, s2, tok);
+           Main2.automatas.add(aux);
+           Main2.modelo.addElement(cadena1);
+           JOptionPane.showMessageDialog(null, "¡Automata creado exitosamente! con rango de:"+s1+ "a" +s2+ "y un token de"+token);
+           dispose();
+        }
     }//GEN-LAST:event_ButtonCrearActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ButtonCrear;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    public static javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField jTextFieldCadena;
+    private javax.swing.JTextField jTextFieldCadena1;
     private javax.swing.JTextField jTextFieldToken;
     // End of variables declaration//GEN-END:variables
 }
