@@ -27,20 +27,16 @@ public class LL1 {
         HashSet<Simbolo> aux2 = new HashSet<>();
         r.ReglasPrueba();
         reglas = r.reglas;
-        aux = reglas.get(1).getRegla();
+        aux = reglas.get(6).getRegla();
          System.out.println("\n Regla que vamos a analizar: ");
          for (Simbolo simbolo : aux) 
              System.out.print(simbolo.getS()+" ");
          
          System.out.println("First de "+aux.get(0).getS()+": \n");
          aux2 = l.First(aux);
-         System.out.print("{");
-         for (Simbolo simbolo : aux2) {
-             if(simbolo.getS().equals(EPSILON))
-                 System.out.println("Epsilon");
-             else
-                 System.out.print(simbolo.getS()+" ");
-         }
+         System.out.print("{ ");
+         for (Simbolo simbolo : aux2) 
+            System.out.print(simbolo.getS()+" ");
          System.out.print("}"+"\n");
          
          System.out.println("Follow de "+aux.get(0).getS()+": \n");
@@ -74,39 +70,48 @@ public class LL1 {
      }
      
      public HashSet<Simbolo> Follow(Simbolo simbNT){
+         //System.out.println("Entre a follow con simbolo " + simbNT.getS());
          HashSet<Simbolo> c = new HashSet<>();
          Simbolo pesos = new Simbolo("$", false, 200);
+         Simbolo espacio = new Simbolo(" ", false, 300);
          ArrayList<Regla> aux = buscarSimbolo(simbNT, false);
-         System.out.println(aux.size());
-         
-         System.out.println(reglas.get(0).getRegla().get(0).getS()+" Es igual a "+ simbNT.getS());
+  
          if(reglas.get(0).getRegla().get(0).getS().equals(simbNT.getS()))
              c.add(pesos);
          
-         System.out.print("\n Conjunto c: " );
-         for (Simbolo simbolo : c) 
-             System.out.print(simbolo.getS()+" ");
-         
          for (Regla regla : aux) {
             ArrayList<Simbolo> ladoDer = regla.getRegla();
+            //System.out.println(ladoDer.size());
             int tam = ladoDer.size();
             if(tam == 4){
-                for (Regla reg : buscarSimbolo(ladoDer.get(3), true)) 
-                    c.addAll(First(reg.getRegla()));
+                //System.out.println("Estoy en follow (4) con este simbolo: " + simbNT.getS() + ladoDer.get(3).getS());
                 
-                System.out.print("\n Conjunto c: " );
-                for (Simbolo simbolo : c) 
-                    System.out.print(simbolo.getS()+" ");
-         
-                if(c.contains(EPSILON)){
-                    c.remove(EPSILON);
-                    c.addAll(Follow(ladoDer.get(0)));
+                if(ladoDer.get(2).getS().equals(simbNT.getS())){
+                    //System.out.println(ladoDer.get(3).getS());
+                    ArrayList<Simbolo> as = new ArrayList<>();
+                    as.add(espacio);
+                    as.add(ladoDer.get(3));
+                    // System.out.println(as.size());
+                    c.addAll(First(as));
+                    Simbolo aux1 = null;
+                    for(Simbolo bep : c){
+                        System.out.println(bep.getS());
+                        if(bep.getS().equals(EPSILON)){
+                            aux1 = bep;
+                        }
+                    }
+                    c.remove(aux1);
                 }
-            }else if(tam == 3)
-                Follow(ladoDer.get(0));
-                System.out.print("Conjunto c: " );
+                
+                /*System.out.print("\n 2° Conjunto c: " );
                 for (Simbolo simbolo : c) 
-                    System.out.print(simbolo.getS()+" ");
+                    System.out.print(simbolo.getS()+" ");*/
+         
+                
+            }else if(tam == 3){
+                //System.out.println("Estoy en follow (3) con este simbolo: " + simbNT.getS() + ladoDer.get(0).getS());
+                c.addAll(Follow(ladoDer.get(0)));
+            }
          }
          
          return c;
