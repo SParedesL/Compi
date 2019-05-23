@@ -49,4 +49,7 @@ public class LL1 {
         }
         return Cerr;
     }
+    
+    public HashSet<Item> Mover(Item i){}
+    
 }
