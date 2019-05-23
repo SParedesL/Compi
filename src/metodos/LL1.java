@@ -28,7 +28,7 @@ public class LL1 {
     }
     
     public void generarTabla(){
-        
+      
     }
     
     public HashSet<Item> Cerradura(Item i){
