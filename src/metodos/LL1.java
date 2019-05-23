@@ -25,8 +25,7 @@ public class LL1 {
     public static void main(String[] args) {
         Regla r = new Regla();
         LL1 l = new LL1();
-    }
-    
+    }    
     public void generarTabla(){
       
     }

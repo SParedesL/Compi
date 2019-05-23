@@ -195,15 +195,9 @@ public class Gramatica {
          HashSet<Simbolo> c = new HashSet<>();
          Simbolo pesos = new Simbolo("$", false, 200);
          ArrayList<Regla> aux = buscarSimbolo(simbNT, false);
-         System.out.println(aux.size());
-         
-         System.out.println(reglas.get(0).getRegla().get(0).getS()+" Es igual a "+ simbNT.getS());
+        
          if(reglas.get(0).getRegla().get(0).getS().equals(simbNT.getS()))
              c.add(pesos);
-         
-         System.out.print("\n Conjunto c: " );
-         for (Simbolo simbolo : c) 
-             System.out.print(simbolo.getS()+" ");
          
          for (Regla regla : aux) {
             ArrayList<Simbolo> ladoDer = regla.getRegla();
@@ -211,10 +205,6 @@ public class Gramatica {
             if(tam == 4){
                 for (Regla reg : buscarSimbolo(ladoDer.get(3), true)) 
                     c.addAll(First(reg.getRegla()));
-                
-                System.out.print("\n Conjunto c: " );
-                for (Simbolo simbolo : c) 
-                    System.out.print(simbolo.getS()+" ");
          
                 if(c.contains(EPSILON)){
                     c.remove(EPSILON);
@@ -222,9 +212,6 @@ public class Gramatica {
                 }
             }else if(tam == 3)
                 Follow(ladoDer.get(0));
-                System.out.print("Conjunto c: " );
-                for (Simbolo simbolo : c) 
-                    System.out.print(simbolo.getS()+" ");
          }
          
          return c;
