@@ -31,8 +31,6 @@ public class LL1 {
         
     }
     
-    
-    
     public HashSet<Item> Cerradura(Item i){
         Stack<Item> Pila = new Stack<>();
         HashSet<Item> Cerr = new HashSet<>();
@@ -51,4 +49,7 @@ public class LL1 {
         }
         return Cerr;
     }
+    
+    public HashSet<Item> Mover(Item i){}
+    
 }
