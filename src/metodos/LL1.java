@@ -70,7 +70,6 @@ public class LL1 {
      }
      
      public HashSet<Simbolo> Follow(Simbolo simbNT){
-         //System.out.println("Entre a follow con simbolo " + simbNT.getS());
          HashSet<Simbolo> c = new HashSet<>();
          Simbolo pesos = new Simbolo("$", false, 200);
          Simbolo espacio = new Simbolo(" ", false, 300);
@@ -84,7 +83,6 @@ public class LL1 {
             //System.out.println(ladoDer.size());
             int tam = ladoDer.size();
             if(tam == 4){
-                //System.out.println("Estoy en follow (4) con este simbolo: " + simbNT.getS() + ladoDer.get(3).getS());
                 
                 if(ladoDer.get(2).getS().equals(simbNT.getS())){
                     //System.out.println(ladoDer.get(3).getS());
@@ -103,13 +101,7 @@ public class LL1 {
                     c.remove(aux1);
                 }
                 
-                /*System.out.print("\n 2° Conjunto c: " );
-                for (Simbolo simbolo : c) 
-                    System.out.print(simbolo.getS()+" ");*/
-         
-                
             }else if(tam == 3){
-                //System.out.println("Estoy en follow (3) con este simbolo: " + simbNT.getS() + ladoDer.get(0).getS());
                 c.addAll(Follow(ladoDer.get(0)));
             }
          }
