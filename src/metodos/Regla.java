@@ -13,20 +13,19 @@ import java.util.ArrayList;
  */
 public class Regla {
     public ArrayList<Simbolo> regla;
-    public ArrayList<Regla> reglas;
     static final String EPSILON = "\u03B5";
 
     public Regla() {
+        regla = new ArrayList<>();
     }
-    
     
     public Regla(ArrayList<Simbolo> regla) {
         this.regla = regla;
     }
     
-    public void agregarSimbolo(String s, boolean terminal, int token, ArrayList<Simbolo> regla){
+    public void agregarSimbolo(String s, boolean terminal, int token){
         Simbolo nuevo = new Simbolo(s, terminal, token);
-        regla.add(nuevo);
+        this.regla.add(nuevo);
     }
     
     public void agregarRegla(ArrayList<Simbolo> r, ArrayList<Regla> reglas ){
@@ -37,13 +36,8 @@ public class Regla {
     public ArrayList<Simbolo> getRegla() {
         return regla;
     }
-
-    public ArrayList<Regla> getReglas() {
-        return reglas;
-    }
     
-    
-    public void ReglasPrueba(){
+    /*public void ReglasPrueba(){
         ArrayList<Regla> reglas = new ArrayList<>();
         ArrayList<Simbolo> c1 = new ArrayList<>();
         ArrayList<Simbolo> c2 = new ArrayList<>();
@@ -87,9 +81,9 @@ public class Regla {
         agregarRegla(c51, reglas);
         this.reglas = reglas;
         imprimirReglas();
-    }
+    }*/
     
-    public void imprimirReglas(){
+    /*public void imprimirReglas(){
         for (Regla reg : reglas) {
             System.out.println("\n --Regla--");
             for (int i = 0; i < reg.getRegla().size(); i++) {
@@ -102,6 +96,6 @@ public class Regla {
     public void imprimirSimbolos(ArrayList<Simbolo> regla){
         for (Simbolo simbolo : regla)
             System.out.println(simbolo.getS());
-    }
+    }*/
     
 }
