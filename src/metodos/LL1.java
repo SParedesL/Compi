@@ -23,8 +23,9 @@ public class LL1 {
     }
      
     public static void main(String[] args) {
-        Regla r = new Regla();
-        LL1 l = new LL1();
+        Gramatica gra = new Gramatica();
+        LL1 l = new LL1(gra);
+        
     }    
     public void generarTabla(){
       
@@ -49,6 +50,11 @@ public class LL1 {
         return Cerr;
     }
     
-    public HashSet<Item> Mover(Item i){}
+    public HashSet<Item> Mover(Item i){
+        HashSet<Item> item = new HashSet<>();
+        
+        
+        return item;
+    }
     
 }
