@@ -22,6 +22,11 @@ public class Simbolo {
         this.terminal = terminal;
         this.token = token;
     }
+
+    public Simbolo() {
+    }
+    
+    
     
     public String getS() {
         return s;
@@ -34,6 +39,11 @@ public class Simbolo {
 
     public int getToken() {
         return token;
+    }
+    
+    public Simbolo crearSimbolo(String s, boolean terminal, int token){
+        Simbolo nvo = new Simbolo(s, terminal, token);
+        return nvo;
     }
 
     
