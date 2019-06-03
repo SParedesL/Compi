@@ -4,10 +4,8 @@
  * and open the template in the editor.
  */
 package metodos;
-
 import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.Stack;
 
 /**
  *
@@ -15,46 +13,87 @@ import java.util.Stack;
  */
 public class LL1 {
     public Gramatica G;
-    HashSet<Item> hi = new HashSet<>();
+    static final String EPSILON = "\u03B5";
     
     public LL1(Gramatica g) {
         this.G = g;
-        hi = Item.generarItems(g);
     }
      
     public static void main(String[] args) {
+        HashSet<Simbolo> terminales = new HashSet<>(); 
+        HashSet<Simbolo> noTerminales = new HashSet<>(); 
+        HashSet<Celda> celdas = new HashSet<>();
         Gramatica gra = new Gramatica();
         LL1 l = new LL1(gra);
-        
-    }    
-    public void generarTabla(){
-      
+        l.generarConjuntos(terminales,noTerminales);
+        celdas = l.analizarRegla(l.G.getReglas());
+        l.imprimirCeldas(celdas);
+                
+    }   
+    
+    public void generarConjuntos(HashSet<Simbolo> t, HashSet<Simbolo> nt){
+        Simbolo pesos = new Simbolo("$", false, 200);
+        System.out.println("\n No. reglas:"+ G.reglas.size());
+        for (Regla reg : G.reglas) {
+            for (int i = 0; i < reg.getRegla().size(); i++) {
+                if(reg.getRegla().get(i).isTerminal() && !reg.getRegla().get(i).getS().equals(EPSILON) )
+                    t.add(reg.getRegla().get(i));
+            }
+            nt.add(reg.getRegla().get(0));
+        }
+        t.add(pesos);
+
     }
     
-    public HashSet<Item> Cerradura(Item i){
-        Stack<Item> Pila = new Stack<>();
-        HashSet<Item> Cerr = new HashSet<>();
-        Cerr.clear();
-        Pila.push(i);
-        char s;
-        while(!Pila.empty()){
-            i = Pila.pop();
-            if(!Cerr.contains(i)){
-                Cerr.add(i);
-                for(Item it : hi){
-                    if(it.r.getRegla().get(0).getS().equals(i.r.getRegla().get(0).getS()))
-                        Pila.add(it);
+    
+    public void imprimirSimbolos(HashSet<Simbolo> regla){
+        for (Simbolo simbolo : regla)
+            System.out.println(simbolo.getS());
+    }
+    
+    public HashSet<Celda> analizarRegla(ArrayList<Regla> reglas){
+        HashSet<Simbolo> firsts = new HashSet<>();
+        HashSet<Simbolo> follows = new HashSet<>();
+        HashSet<Celda> celdas = new HashSet<>();
+        Celda cel = null;
+        String cont = null;
+        for (Regla reg : reglas) {
+            cont = "";
+            firsts = G.First(reg.getRegla());
+            for (int i = 1; i < reg.getRegla().size(); i++) 
+                 cont = cont+reg.getRegla().get(i).getS();
+            
+            for (Simbolo simb : firsts) {
+                if(!simb.getS().equals(EPSILON)){
+                    cel = new Celda(simb.getS(), reg.getRegla().get(0).getS(), cont , reg.getNoReg());
+                    celdas.add(cel);
+                }else{
+                    follows = G.Follow(reg.getRegla().get(0));
+                    for (Simbolo sim : follows) {
+                        cel = new Celda(simb.getS(),reg.getRegla().get(0).getS(), EPSILON , reg.getNoReg());
+                        celdas.add(cel);
+                    }
                 }
             }
         }
-        return Cerr;
+        return celdas;
     }
     
-    public HashSet<Item> Mover(Item i){
-        HashSet<Item> item = new HashSet<>();
-        
-        
-        return item;
+    public void imprimirCeldas(HashSet<Celda> celdas){
+        for (Celda celda : celdas) 
+            System.out.println("\n De "+celda.getFila()+" con "+celda.getColumna()+" es: ("+celda.getValor()+","+celda.getNoReg()+")");
+    }
+    
+    
+    
+    public String[][] generarTabla(HashSet<Simbolo> t, HashSet<Simbolo> nt){
+      int indice1                 =   0;
+      int numeroFilas             =   t.size();
+      int numeroColumnas          =   nt.size()+1;
+      String [][]datos            =   new String[numeroFilas][numeroColumnas]; 
+      
+      
+      return datos;
     }
     
 }

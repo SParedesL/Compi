@@ -13,28 +13,34 @@ import java.util.ArrayList;
  */
 public class Regla {
     public ArrayList<Simbolo> regla;
+    public int noReg;
     static final String EPSILON = "\u03B5";
 
-    public Regla() {
+    public Regla(int noReg) {
         regla = new ArrayList<>();
+        this.noReg = noReg;
     }
     
-    public Regla(ArrayList<Simbolo> regla) {
+    public Regla(ArrayList<Simbolo> regla, int noReg) {
         this.regla = regla;
+        this.noReg = noReg;
     }
     
-    public void agregarSimbolo(String s, boolean terminal, int token){
-        Simbolo nuevo = new Simbolo(s, terminal, token);
+    public void agregarSimbolo(Simbolo nuevo){
         this.regla.add(nuevo);
     }
     
-    public void agregarRegla(ArrayList<Simbolo> r, ArrayList<Regla> reglas ){
-        Regla nueva = new Regla(r);
+    public void agregarRegla(ArrayList<Simbolo> r, ArrayList<Regla> reglas, int noReg ){
+        Regla nueva = new Regla(r, noReg);
         reglas.add(nueva);
     }
 
     public ArrayList<Simbolo> getRegla() {
         return regla;
+    }
+    
+    public int getNoReg(){
+        return noReg;
     }
     
     /*public void ReglasPrueba(){

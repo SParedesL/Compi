@@ -13,13 +13,14 @@ import java.util.HashSet;
  * @author sebas
  */
 public class Gramatica {
-    ArrayList<Regla> reglas;
-    HashSet<Simbolo> terminales, noTerminales;
+    public ArrayList<Regla> reglas;
     static final String EPSILON = "\u03B5";
-    Lexico lexic;
+    public Lexico lexic;
+    public Simbolo s = new Simbolo();
     
     public Gramatica(){
         reglas = new ArrayList<>();
+        ReglasPrueba();
     }
     
     public void generadorGramaticas(AFD a, String sigma){
@@ -118,46 +119,56 @@ public class Gramatica {
     }
     
     public void ReglasPrueba(){
-        Regla r = new Regla();
-        Regla c1 = new Regla();
-        Regla c2 = new Regla();
-        Regla c22 = new Regla();
-        Regla c3 = new Regla();
-        Regla c4 = new Regla();
-        Regla c41 = new Regla();
-        Regla c5 = new Regla();
-        Regla c51 = new Regla();
-        c1.agregarSimbolo("E", false, 10);
-        c1.agregarSimbolo("T", false, 30);
-        c1.agregarSimbolo("E'", false, 40);
+        Regla c1 = new Regla(1);
+        Regla c2 = new Regla(2);
+        Regla c22 = new Regla(3);
+        Regla c3 = new Regla(4);
+        Regla c4 = new Regla(5);
+        Regla c41 = new Regla(6);
+        Regla c5 = new Regla(7);
+        Regla c51 = new Regla(8);
+        Simbolo E = s.crearSimbolo("E", false, 10);
+        Simbolo T = s.crearSimbolo("T", false, 30);
+        Simbolo Ep = s.crearSimbolo("E'", false, 40);
+        c1.agregarSimbolo(E);
+        c1.agregarSimbolo(T);
+        c1.agregarSimbolo(Ep);
         reglas.add(c1);
-        c2.agregarSimbolo("E'", false, 40);
-        c2.agregarSimbolo("+", true, 60);
-        c2.agregarSimbolo("T", false, 30);
-        c2.agregarSimbolo("E'", false, 40);
+        c2.agregarSimbolo(Ep);
+        Simbolo mas = s.crearSimbolo("+", true, 60);
+        c2.agregarSimbolo(mas);
+        c2.agregarSimbolo(T);
+        c2.agregarSimbolo(Ep);
         reglas.add(c2);
-        c22.agregarSimbolo("E'", false, 40);
-        c22.agregarSimbolo(EPSILON, false, 50);
+        c22.agregarSimbolo(Ep);
+        Simbolo e = s.crearSimbolo(EPSILON, false, 50);
+        c22.agregarSimbolo(e);
         reglas.add(c22);
-        c3.agregarSimbolo("T", false, 30);
-        c3.agregarSimbolo("F", false, 70);
-        c3.agregarSimbolo("T'", false, 80);
+        c3.agregarSimbolo(T);
+        Simbolo F = s.crearSimbolo("F", false, 70);
+        Simbolo Tp = s.crearSimbolo("T'", false, 80);
+        c3.agregarSimbolo(F);
+        c3.agregarSimbolo(Tp);
         reglas.add(c3);
-        c4.agregarSimbolo("T'", false, 80);
-        c4.agregarSimbolo("*", true, 90);
-        c4.agregarSimbolo("F", false, 70);
-        c4.agregarSimbolo("T'", false, 80);
+        c4.agregarSimbolo(Tp);
+        Simbolo ast = s.crearSimbolo("*", true, 90);
+        c4.agregarSimbolo(ast);
+        c4.agregarSimbolo(F);
+        c4.agregarSimbolo(Tp);
         reglas.add(c4);
-        c41.agregarSimbolo("T'", false, 80);
-        c41.agregarSimbolo(EPSILON, false, 50);
+        c41.agregarSimbolo(Tp);
+        c41.agregarSimbolo(e);
         reglas.add(c41);
-        c5.agregarSimbolo("F", false, 70);
-        c5.agregarSimbolo("(", true, 100);
-        c5.agregarSimbolo("E", false, 10);
-        c5.agregarSimbolo(")", true, 110);
+        c5.agregarSimbolo(F);
+        Simbolo parizq = s.crearSimbolo("(", true, 100);
+        c5.agregarSimbolo(parizq);
+        c5.agregarSimbolo(E);
+        Simbolo parder = s.crearSimbolo(")", true, 110);
+        c5.agregarSimbolo(parder);
         reglas.add(c5);
-        c51.agregarSimbolo("F", false, 70);
-        c51.agregarSimbolo("id", true, 120);
+        c51.agregarSimbolo(F);
+        Simbolo id = s.crearSimbolo("id", true, 120);
+        c51.agregarSimbolo(id);
         reglas.add(c51);
         imprimirReglas();
     }
